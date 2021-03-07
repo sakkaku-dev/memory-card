@@ -20,16 +20,6 @@ _global_script_classes=[ {
 "path": "res://scripts/gui/Focusable.gd"
 }, {
 "base": "Node",
-"class": "Health",
-"language": "GDScript",
-"path": "res://scripts/combat/Health.gd"
-}, {
-"base": "Area2D",
-"class": "HurtBox",
-"language": "GDScript",
-"path": "res://scripts/combat/HurtBox.gd"
-}, {
-"base": "Node",
 "class": "InputReader",
 "language": "GDScript",
 "path": "res://scripts/input/InputReader.gd"
@@ -44,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/input/PlayerInput.gd"
 }, {
+"base": "TextureButton",
+"class": "PokerCard",
+"language": "GDScript",
+"path": "res://assets/poker-cards/PokerCard.gd"
+}, {
 "base": "UnitTest",
 "class": "SceneTest",
 "language": "GDScript",
@@ -57,11 +52,10 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "EmptyPlayerInput": "",
 "Focusable": "",
-"Health": "",
-"HurtBox": "",
 "InputReader": "",
 "PlayerFocus": "",
 "PlayerInput": "",
+"PokerCard": "",
 "SceneTest": "",
 "UnitTest": ""
 }
@@ -80,7 +74,7 @@ Display=8
 
 [application]
 
-config/name="godot-template"
+config/name="memory-card"
 run/main_scene="res://scenes/Game.tscn"
 config/icon="res://icon.png"
 
