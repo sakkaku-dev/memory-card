@@ -1,16 +1,33 @@
 extends Node
 
+onready var main_menu = $MenuLayer/MainMenu
+onready var game = $MarginContainer/MemoryCardGrid
+onready var game_ui = $UILayer/GameUI
+onready var score_label = $UILayer/GameUI/Score
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var score = 0
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	main_menu.show()
+	game.hide()
+	game_ui.hide()
+	update_score()
+
+func start_game():
+	main_menu.hide()
+	game_ui.show()
+	game.show()
+	game.fill_board()
+	
+
+func exit_game():
+	get_tree().quit()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func update_score():
+	score_label.text = "Score: " + str(score)
+
+
+func _on_MemoryCardGrid_cards_matched():
+	score += 10
+	update_score()

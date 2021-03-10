@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/fonts/main_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/ui/red_button00.png" type="Texture" id=2]
+[ext_resource path="res://scenes/ui/Button.gd" type="Script" id=3]
+
+[node name="Button" type="CenterContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = 417.0
+margin_top = 277.0
+margin_right = 607.0
+margin_bottom = 322.0
+texture_normal = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 474.0
+margin_top = 287.0
+margin_right = 549.0
+margin_bottom = 313.0
+custom_fonts/font = ExtResource( 1 )
+text = "Test"
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]

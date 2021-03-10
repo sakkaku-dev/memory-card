@@ -11,14 +11,15 @@ onready var revealed_timer := $RevealedTimer
 
 var revealed_cards = []
 
-func _ready():
-	var cards = create_card_scenes()
+func fill_board():
+	var cards = _create_card_scenes()
 	cards.shuffle()
 	for card in cards:
 		grid.add_child(card)
+	
 
 
-func create_card_scenes() -> Array:
+func _create_card_scenes() -> Array:
 	var dir = Directory.new()
 	var result = []
 	
