@@ -1,5 +1,5 @@
 tool
-extends TextureButton
+extends FocusButton
 
 class_name PokerCard
 
@@ -12,6 +12,7 @@ export var show_back = true setget set_show_back
 
 func _ready():
 	update_card()
+
 
 func set_value(v: String) -> void:
 	if value != v:
@@ -52,3 +53,19 @@ func set_from_file_name(file_name: String):
 
 static func valid_file(file_name: String):
 	return file_name.begins_with("card_") and file_name.ends_with(".png") and file_name.count("_") == 2
+
+
+func on_enter():
+	if show_back:
+		modulate = Color.gray
+
+
+func on_exit():
+	modulate = Color.white
+
+func _on_PokerCard_mouse_entered():
+	on_enter()
+
+
+func _on_PokerCard_mouse_exited():
+	on_exit()

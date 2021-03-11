@@ -13,6 +13,12 @@ func _ready():
 	game_ui.hide()
 	update_score()
 
+
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		toggle_menu()
+
+
 func start_game():
 	main_menu.hide()
 	game_ui.show()
@@ -22,6 +28,13 @@ func start_game():
 
 func exit_game():
 	get_tree().quit()
+
+
+func toggle_menu():
+	if main_menu.visible:
+		main_menu.hide()
+	else:
+		main_menu.show()
 
 
 func update_score():

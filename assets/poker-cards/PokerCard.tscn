@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/poker-cards/PokerCard.gd" type="Script" id=1]
+[ext_resource path="res://assets/poker-cards/card_back.png" type="Texture" id=2]
 
 [node name="PokerCard" type="TextureButton"]
+texture_normal = ExtResource( 2 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="mouse_entered" from="." to="." method="_on_PokerCard_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_PokerCard_mouse_exited"]
