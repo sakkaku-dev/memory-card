@@ -1,5 +1,5 @@
 tool
-extends FocusButton
+extends TextureButton
 
 export var label := "Test"
 

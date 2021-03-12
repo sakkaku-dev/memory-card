@@ -1,5 +1,5 @@
 tool
-extends FocusButton
+extends TextureButton
 
 class_name PokerCard
 
@@ -56,16 +56,24 @@ static func valid_file(file_name: String):
 
 
 func on_enter():
-	if show_back:
-		modulate = Color.gray
+	modulate = Color.gray
 
 
 func on_exit():
 	modulate = Color.white
+
 
 func _on_PokerCard_mouse_entered():
 	on_enter()
 
 
 func _on_PokerCard_mouse_exited():
+	on_exit()
+
+
+func _on_PokerCard_focus_entered():
+	on_enter()
+
+
+func _on_PokerCard_focus_exited():
 	on_exit()

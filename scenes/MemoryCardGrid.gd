@@ -17,6 +17,7 @@ func fill_board():
 	for card in cards:
 		grid.add_child(card)
 	
+	grid.focus_first()
 
 
 func _create_card_scenes() -> Array:
@@ -44,7 +45,7 @@ func _create_card_scenes() -> Array:
 
 
 func _on_card_click(card: PokerCard):
-	if _max_revealed_cards():
+	if _max_revealed_cards() or not card.show_back:
 		return
 	
 	card.show_back = false

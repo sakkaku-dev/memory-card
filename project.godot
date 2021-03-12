@@ -44,7 +44,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/input/PlayerInput.gd"
 }, {
-"base": "FocusButton",
+"base": "TextureButton",
 "class": "PokerCard",
 "language": "GDScript",
 "path": "res://assets/poker-cards/PokerCard.gd"
