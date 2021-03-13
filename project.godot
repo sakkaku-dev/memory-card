@@ -15,9 +15,9 @@ _global_script_classes=[ {
 "path": "res://scripts/input/EmptyPlayerInput.gd"
 }, {
 "base": "TextureButton",
-"class": "FocusButton",
+"class": "FocusTextureButton",
 "language": "GDScript",
-"path": "res://scenes/ui/FocusButton.gd"
+"path": "res://scenes/ui/FocusTextureButton.gd"
 }, {
 "base": "Control",
 "class": "Focusable",
@@ -61,7 +61,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "EmptyPlayerInput": "",
-"FocusButton": "",
+"FocusTextureButton": "",
 "Focusable": "",
 "InputReader": "",
 "Menu": "",

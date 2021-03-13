@@ -14,11 +14,6 @@ func _ready():
 	update_score()
 
 
-func _input(event):
-	if event.is_action_pressed("ui_cancel"):
-		toggle_menu()
-
-
 func start_game():
 	main_menu.hide()
 	game_ui.show()
