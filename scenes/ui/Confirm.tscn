@@ -3,10 +3,10 @@
 [ext_resource path="res://scenes/ui/Confirm.gd" type="Script" id=1]
 [ext_resource path="res://assets/styles/main_font.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/ui/red_boxCheckmark.png" type="Texture" id=3]
-[ext_resource path="res://assets/ui/red_boxCross.png" type="Texture" id=4]
-[ext_resource path="res://scenes/ui/FocusTextureButton.gd" type="Script" id=5]
+[ext_resource path="res://scenes/ui/FocusTextureButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/ui/red_boxCross.png" type="Texture" id=5]
 
-[node name="PopupPanel" type="PopupPanel"]
+[node name="ConfirmDialog" type="PopupPanel"]
 margin_right = 8.0
 margin_bottom = 8.0
 script = ExtResource( 1 )
@@ -49,15 +49,8 @@ margin_top = 46.0
 margin_right = 212.0
 margin_bottom = 82.0
 
-[node name="Confirm" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_right = 38.0
-margin_bottom = 36.0
-focus_neighbour_left = NodePath("../Cancel")
-focus_neighbour_right = NodePath("../Cancel")
-focus_next = NodePath("../Cancel")
-focus_previous = NodePath("../Cancel")
+[node name="Confirm" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
 texture_normal = ExtResource( 3 )
-script = ExtResource( 5 )
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 42.0
@@ -68,15 +61,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Cancel" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 174.0
-margin_right = 212.0
-margin_bottom = 36.0
-focus_neighbour_left = NodePath("../Confirm")
-focus_neighbour_right = NodePath("../Confirm")
-focus_next = NodePath("../Confirm")
-focus_previous = NodePath("../Confirm")
-texture_normal = ExtResource( 4 )
-script = ExtResource( 5 )
+[node name="Cancel" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
+texture_normal = ExtResource( 5 )
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Confirm" to="." method="_on_Confirm_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_Cancel_pressed"]

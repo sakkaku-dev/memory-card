@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/kenney_ui_audio/rollover2.wav" type="AudioStream" id=1]
+[ext_resource path="res://scenes/ui/UISound.gd" type="Script" id=2]
+
+[node name="UISound" type="AudioStreamPlayer"]
+stream = ExtResource( 1 )
+script = ExtResource( 2 )

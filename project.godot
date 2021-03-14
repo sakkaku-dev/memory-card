@@ -48,6 +48,10 @@ config/name="memory-card"
 run/main_scene="res://scenes/Game.tscn"
 config/icon="res://icon.png"
 
+[audio]
+
+default_bus_layout=""
+
 [editor_plugins]
 
 enabled=PoolStringArray(  )
