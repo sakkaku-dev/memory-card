@@ -1,5 +1,4 @@
-tool
-extends TextureButton
+extends FocusTextureButton
 
 class_name PokerCard
 
@@ -53,27 +52,3 @@ func set_from_file_name(file_name: String):
 
 static func valid_file(file_name: String):
 	return file_name.begins_with("card_") and file_name.ends_with(".png") and file_name.count("_") == 2
-
-
-func on_enter():
-	modulate = Color.gray
-
-
-func on_exit():
-	modulate = Color.white
-
-
-func _on_PokerCard_mouse_entered():
-	on_enter()
-
-
-func _on_PokerCard_mouse_exited():
-	on_exit()
-
-
-func _on_PokerCard_focus_entered():
-	on_enter()
-
-
-func _on_PokerCard_focus_exited():
-	on_exit()

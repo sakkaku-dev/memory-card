@@ -14,10 +14,15 @@ var revealed_cards = []
 func fill_board():
 	var cards = _create_card_scenes()
 	cards.shuffle()
+	
+	var first = null
 	for card in cards:
 		grid.add_child(card)
+		if first == null:
+			first = card
 	
-	grid.focus_first()
+	if first != null:
+		first.grab_focus()
 
 
 func _create_card_scenes() -> Array:

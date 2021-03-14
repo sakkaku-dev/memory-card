@@ -9,67 +9,25 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "PlayerInput",
-"class": "EmptyPlayerInput",
-"language": "GDScript",
-"path": "res://scripts/input/EmptyPlayerInput.gd"
-}, {
 "base": "TextureButton",
 "class": "FocusTextureButton",
 "language": "GDScript",
 "path": "res://scenes/ui/FocusTextureButton.gd"
 }, {
 "base": "Control",
-"class": "Focusable",
-"language": "GDScript",
-"path": "res://scripts/gui/Focusable.gd"
-}, {
-"base": "Node",
-"class": "InputReader",
-"language": "GDScript",
-"path": "res://scripts/input/InputReader.gd"
-}, {
-"base": "Control",
 "class": "Menu",
 "language": "GDScript",
 "path": "res://scenes/ui/Menu.gd"
 }, {
-"base": "Focusable",
-"class": "PlayerFocus",
-"language": "GDScript",
-"path": "res://scripts/gui/PlayerFocus.gd"
-}, {
-"base": "InputReader",
-"class": "PlayerInput",
-"language": "GDScript",
-"path": "res://scripts/input/PlayerInput.gd"
-}, {
-"base": "TextureButton",
+"base": "FocusTextureButton",
 "class": "PokerCard",
 "language": "GDScript",
 "path": "res://assets/poker-cards/PokerCard.gd"
-}, {
-"base": "UnitTest",
-"class": "SceneTest",
-"language": "GDScript",
-"path": "res://tests/SceneTest.gd"
-}, {
-"base": "Node",
-"class": "UnitTest",
-"language": "GDScript",
-"path": "res://tests/UnitTest.gd"
 } ]
 _global_script_class_icons={
-"EmptyPlayerInput": "",
 "FocusTextureButton": "",
-"Focusable": "",
-"InputReader": "",
 "Menu": "",
-"PlayerFocus": "",
-"PlayerInput": "",
-"PokerCard": "",
-"SceneTest": "",
-"UnitTest": ""
+"PokerCard": ""
 }
 
 [WAT]
