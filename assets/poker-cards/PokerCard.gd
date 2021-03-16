@@ -5,6 +5,11 @@ class_name PokerCard
 const CARD_BACK_PATH = "res://assets/poker-cards/card_back.png"
 const CARDS_FOLDER = "res://assets/poker-cards/cards"
 
+const CLUB = "clubs"
+const DIAMOND = "diamonds"
+const HEART = "hearts"
+const SPADE = "spades"
+
 export var value: String setget set_value
 export var suit: String setget set_suit
 export var show_back = true setget set_show_back

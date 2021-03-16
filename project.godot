@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "OptionButton",
+"class": "CardMatchSelect",
+"language": "GDScript",
+"path": "res://scenes/CardMatchSelect.gd"
+}, {
+"base": "Reference",
+"class": "CardMatcher",
+"language": "GDScript",
+"path": "res://assets/matcher/CardMatcher.gd"
+}, {
 "base": "TextureButton",
 "class": "FocusTextureButton",
 "language": "GDScript",
@@ -19,14 +29,28 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/ui/Menu.gd"
 }, {
+"base": "CardMatcher",
+"class": "NumberCardMatcher",
+"language": "GDScript",
+"path": "res://assets/matcher/NumberCardMatcher.gd"
+}, {
+"base": "CardMatcher",
+"class": "NumberColorCardMatcher",
+"language": "GDScript",
+"path": "res://assets/matcher/NumberColorCardMatcher.gd"
+}, {
 "base": "FocusTextureButton",
 "class": "PokerCard",
 "language": "GDScript",
 "path": "res://assets/poker-cards/PokerCard.gd"
 } ]
 _global_script_class_icons={
+"CardMatchSelect": "",
+"CardMatcher": "",
 "FocusTextureButton": "",
 "Menu": "",
+"NumberCardMatcher": "",
+"NumberColorCardMatcher": "",
 "PokerCard": ""
 }
 

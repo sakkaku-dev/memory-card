@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/MemoryCardGrid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Game.gd" type="Script" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://scenes/ui/Confirm.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/ui/DialogContainer.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/styles/main_theme.tres" type="Theme" id=8]
+[ext_resource path="res://scenes/ui/MenuContainer.gd" type="Script" id=9]
+[ext_resource path="res://scenes/CardMatchSelect.tscn" type="PackedScene" id=10]
 
 [node name="Game" type="Node"]
 script = ExtResource( 2 )
@@ -27,35 +29,67 @@ margin_bottom = 364.0
 [node name="MenuLayer" type="CanvasLayer" parent="."]
 
 [node name="MainMenu" type="MarginContainer" parent="MenuLayer"]
-anchor_left = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -95.0
-margin_right = 95.0
 theme = ExtResource( 8 )
-custom_constants/margin_top = 50
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Menu" parent="MenuLayer/MainMenu" instance=ExtResource( 3 )]
+[node name="CenterContainer" type="CenterContainer" parent="MenuLayer/MainMenu"]
+margin_right = 1024.0
+margin_bottom = 600.0
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" parent="MenuLayer/MainMenu/CenterContainer" instance=ExtResource( 3 )]
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 0.0
-margin_top = 50.0
-margin_right = 190.0
-margin_bottom = 600.0
+margin_left = 441.0
+margin_top = 248.0
+margin_right = 583.0
+margin_bottom = 352.0
 
-[node name="Start" parent="MenuLayer/MainMenu/Menu" instance=ExtResource( 4 )]
-margin_right = 190.0
+[node name="Start" parent="MenuLayer/MainMenu/CenterContainer/Menu" instance=ExtResource( 4 )]
+margin_right = 142.0
 margin_bottom = 32.0
 text = "Start"
 
-[node name="Exit" parent="MenuLayer/MainMenu/Menu" instance=ExtResource( 4 )]
+[node name="Settings" parent="MenuLayer/MainMenu/CenterContainer/Menu" instance=ExtResource( 4 )]
 margin_top = 42.0
-margin_right = 190.0
+margin_right = 142.0
 margin_bottom = 74.0
+text = "Settings"
+
+[node name="Exit" parent="MenuLayer/MainMenu/CenterContainer/Menu" instance=ExtResource( 4 )]
+margin_top = 84.0
+margin_right = 142.0
+margin_bottom = 116.0
 text = "Exit"
+
+[node name="SettingsMenu" parent="MenuLayer/MainMenu/CenterContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 404.0
+margin_top = 284.0
+margin_right = 619.0
+margin_bottom = 316.0
+custom_constants/hseparation = 20
+columns = 2
+
+[node name="Label" type="Label" parent="MenuLayer/MainMenu/CenterContainer/SettingsMenu"]
+margin_top = 3.0
+margin_right = 175.0
+margin_bottom = 29.0
+text = "Card Match"
+
+[node name="CardMatchSelect" parent="MenuLayer/MainMenu/CenterContainer/SettingsMenu" instance=ExtResource( 10 )]
+margin_left = 195.0
+margin_right = 215.0
+margin_bottom = 32.0
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -93,6 +127,9 @@ anchor_bottom = 0.0
 margin_right = 1024.0
 margin_bottom = 600.0
 [connection signal="confirm" from="DialogLayer/DialogContainer/ExitConfirm" to="." method="exit_game"]
-[connection signal="pressed" from="MenuLayer/MainMenu/Menu/Start" to="." method="start_game"]
-[connection signal="pressed" from="MenuLayer/MainMenu/Menu/Exit" to="DialogLayer/DialogContainer/ExitConfirm" method="open"]
+[connection signal="pressed" from="MenuLayer/MainMenu/CenterContainer/Menu/Start" to="." method="start_game"]
+[connection signal="pressed" from="MenuLayer/MainMenu/CenterContainer/Menu/Settings" to="MenuLayer/MainMenu/CenterContainer/SettingsMenu" method="show"]
+[connection signal="pressed" from="MenuLayer/MainMenu/CenterContainer/Menu/Exit" to="DialogLayer/DialogContainer/ExitConfirm" method="open"]
+[connection signal="menu_back" from="MenuLayer/MainMenu/CenterContainer/SettingsMenu" to="MenuLayer/MainMenu/CenterContainer/Menu" method="show"]
+[connection signal="item_selected" from="MenuLayer/MainMenu/CenterContainer/SettingsMenu/CardMatchSelect" to="." method="_on_CardMatchSelect_item_selected"]
 [connection signal="cards_matched" from="MarginContainer/MemoryCardGrid" to="." method="_on_MemoryCardGrid_cards_matched"]
