@@ -4,9 +4,11 @@ onready var main_menu = $MenuLayer/MainMenu
 onready var game = $MarginContainer/MemoryCardGrid
 onready var game_ui = $UILayer/GameUI
 onready var score_label = $UILayer/GameUI/Score
+onready var settings = $Settings
+onready var card_match_select = $MenuLayer/MainMenu/CenterContainer/SettingsMenu/CardMatchSelect
+onready var settings_menu = $MenuLayer/MainMenu/CenterContainer/SettingsMenu
 
 var score = 0
-var card_match_opt = CardMatchSelect.Option.NUMBER
 
 func _ready():
 	main_menu.show()
@@ -23,16 +25,20 @@ func start_game():
 	if matcher:
 		game.start_game(matcher)
 	else:
-		print("Cannot create matcher with setting: " + card_match_opt)
+		print("Cannot create matcher with setting: " + _get_match_type())
 
 
 func _create_card_matcher() -> CardMatcher:
-	match(card_match_opt):
+	match(_get_match_type()):
 		CardMatchSelect.Option.NUMBER:
 			return NumberCardMatcher.new()
 		CardMatchSelect.Option.NUMBER_AND_COLOR:
 			return NumberColorCardMatcher.new()
 	return null
+
+
+func _get_match_type():
+	return settings.settings["game"]["match_type"]
 
 
 func exit_game():
@@ -55,5 +61,11 @@ func _on_MemoryCardGrid_cards_matched():
 	update_score()
 
 
-func _on_CardMatchSelect_item_selected(index):
-	card_match_opt = index
+func _on_SettingsMenu_visibility_changed():
+	if not settings_menu: return
+	
+	if settings_menu.visible:
+		card_match_select.selected = _get_match_type()
+	else:
+		settings.settings["game"]["match_type"] = card_match_select.selected
+		settings.save_settings()

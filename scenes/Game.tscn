@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/MemoryCardGrid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Game.gd" type="Script" id=2]
@@ -10,9 +10,13 @@
 [ext_resource path="res://assets/styles/main_theme.tres" type="Theme" id=8]
 [ext_resource path="res://scenes/ui/MenuContainer.gd" type="Script" id=9]
 [ext_resource path="res://scenes/CardMatchSelect.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scripts/Settings.gd" type="Script" id=11]
 
 [node name="Game" type="Node"]
 script = ExtResource( 2 )
+
+[node name="Settings" type="Node" parent="."]
+script = ExtResource( 11 )
 
 [node name="DialogLayer" type="CanvasLayer" parent="."]
 layer = 2
@@ -131,5 +135,6 @@ margin_bottom = 600.0
 [connection signal="pressed" from="MenuLayer/MainMenu/CenterContainer/Menu/Settings" to="MenuLayer/MainMenu/CenterContainer/SettingsMenu" method="show"]
 [connection signal="pressed" from="MenuLayer/MainMenu/CenterContainer/Menu/Exit" to="DialogLayer/DialogContainer/ExitConfirm" method="open"]
 [connection signal="menu_back" from="MenuLayer/MainMenu/CenterContainer/SettingsMenu" to="MenuLayer/MainMenu/CenterContainer/Menu" method="show"]
+[connection signal="visibility_changed" from="MenuLayer/MainMenu/CenterContainer/SettingsMenu" to="." method="_on_SettingsMenu_visibility_changed"]
 [connection signal="item_selected" from="MenuLayer/MainMenu/CenterContainer/SettingsMenu/CardMatchSelect" to="." method="_on_CardMatchSelect_item_selected"]
 [connection signal="cards_matched" from="MarginContainer/MemoryCardGrid" to="." method="_on_MemoryCardGrid_cards_matched"]
