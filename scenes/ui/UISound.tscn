@@ -1,8 +1,20 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://addons/kenney_ui_audio/rollover2.wav" type="AudioStream" id=1]
-[ext_resource path="res://scenes/ui/UISound.gd" type="Script" id=2]
+[ext_resource path="res://assets/rollover2.wav" type="AudioStream" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends AudioStreamPlayer
+
+func _ready():
+	if get_parent() is Control:
+		var ctrl = get_parent() as Control
+		ctrl.connect(\"focus_entered\", self, \"_play_audio\")
+
+
+func _play_audio():
+	play()
+"
 
 [node name="UISound" type="AudioStreamPlayer"]
 stream = ExtResource( 1 )
-script = ExtResource( 2 )
+script = SubResource( 1 )

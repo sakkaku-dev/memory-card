@@ -10,6 +10,8 @@ func _input(event):
 
 
 func _on_Menu_visibility_changed():
-	if visible and get_child_count() > 0:
-		var child: Node = get_child(0)
-		child.grab_focus()
+	if visible:
+		for child in get_children():
+			var ctrl = child as Control
+			if ctrl.focus_mode != FOCUS_NONE:
+				child.grab_focus()

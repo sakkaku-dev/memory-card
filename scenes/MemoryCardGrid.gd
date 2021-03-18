@@ -7,6 +7,7 @@ const POKER_CARD_SCENE = preload("res://assets/poker-cards/PokerCard.tscn")
 
 onready var grid := $GridContainer
 onready var revealed_timer := $RevealedTimer
+onready var match_sound = $MatchSound
 
 var revealed_cards = []
 var card_matcher: CardMatcher
@@ -80,6 +81,7 @@ func _all_cards_revealed() -> bool:
 
 func _on_RevealedTimer_timeout():
 	if card_matcher.match_cards(revealed_cards):
+		match_sound.play()
 		emit_signal("cards_matched")
 	else:
 		for c in revealed_cards:

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/ui/FocusTextureButton.gd" type="Script" id=1]
-[ext_resource path="res://scenes/ui/UISound.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/rollover2.wav" type="AudioStream" id=3]
 
 [node name="FocusTextureButton" type="TextureButton"]
 margin_right = 40.0
@@ -11,4 +11,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="UISound" parent="." instance=ExtResource( 2 )]
+[node name="PressSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+[connection signal="pressed" from="." to="." method="_on_FocusTextureButton_pressed"]

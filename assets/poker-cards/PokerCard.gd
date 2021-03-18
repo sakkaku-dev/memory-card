@@ -14,6 +14,8 @@ export var value: String setget set_value
 export var suit: String setget set_suit
 export var show_back = true setget set_show_back
 
+onready var turn_sound = $TurnSound
+
 func _ready():
 	update_card()
 
@@ -33,6 +35,8 @@ func set_suit(v: String) -> void:
 func set_show_back(v: bool) -> void:
 	if show_back != v:
 		show_back = v
+		if not show_back:
+			turn_sound.play()
 		update_card()
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/MemoryCardGrid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Game.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://scenes/CardMatchSelect.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scripts/Settings.gd" type="Script" id=11]
 [ext_resource path="res://scenes/GameOver.gd" type="Script" id=12]
+[ext_resource path="res://assets/game_over.wav" type="AudioStream" id=13]
 
 [node name="Game" type="Node"]
 script = ExtResource( 2 )
@@ -49,6 +50,9 @@ margin_top = 287.0
 margin_right = 591.0
 margin_bottom = 313.0
 text = "Game Over"
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="MenuLayer/GameOver"]
+stream = ExtResource( 13 )
 
 [node name="MainMenu" type="MarginContainer" parent="MenuLayer"]
 visible = false
@@ -149,6 +153,7 @@ margin_right = 1024.0
 margin_bottom = 600.0
 [connection signal="confirm" from="DialogLayer/DialogContainer/ExitConfirm" to="." method="exit_game"]
 [connection signal="back_to_menu" from="MenuLayer/GameOver" to="." method="_on_GameOver_back_to_menu"]
+[connection signal="visibility_changed" from="MenuLayer/GameOver" to="MenuLayer/GameOver" method="_on_GameOver_visibility_changed"]
 [connection signal="pressed" from="MenuLayer/MainMenu/CenterContainer/Menu/Start" to="." method="start_game"]
 [connection signal="pressed" from="MenuLayer/MainMenu/CenterContainer/Menu/Settings" to="MenuLayer/MainMenu/CenterContainer/SettingsMenu" method="show"]
 [connection signal="pressed" from="MenuLayer/MainMenu/CenterContainer/Menu/Exit" to="DialogLayer/DialogContainer/ExitConfirm" method="open"]
