@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/MemoryCardGrid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Game.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://scenes/ui/MenuContainer.gd" type="Script" id=9]
 [ext_resource path="res://scenes/CardMatchSelect.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scripts/Settings.gd" type="Script" id=11]
+[ext_resource path="res://scenes/GameOver.gd" type="Script" id=12]
 
 [node name="Game" type="Node"]
 script = ExtResource( 2 )
@@ -32,7 +33,25 @@ margin_bottom = 364.0
 
 [node name="MenuLayer" type="CanvasLayer" parent="."]
 
+[node name="GameOver" type="CenterContainer" parent="MenuLayer"]
+margin_right = 1024.0
+margin_bottom = 600.0
+focus_mode = 2
+theme = ExtResource( 8 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MenuLayer/GameOver"]
+margin_left = 433.0
+margin_top = 287.0
+margin_right = 591.0
+margin_bottom = 313.0
+text = "Game Over"
+
 [node name="MainMenu" type="MarginContainer" parent="MenuLayer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 8 )
@@ -49,7 +68,6 @@ __meta__ = {
 }
 
 [node name="Menu" parent="MenuLayer/MainMenu/CenterContainer" instance=ExtResource( 3 )]
-visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 441.0
@@ -63,15 +81,15 @@ margin_bottom = 32.0
 text = "Start"
 
 [node name="Settings" parent="MenuLayer/MainMenu/CenterContainer/Menu" instance=ExtResource( 4 )]
-margin_top = 42.0
+margin_top = 36.0
 margin_right = 142.0
-margin_bottom = 74.0
+margin_bottom = 68.0
 text = "Settings"
 
 [node name="Exit" parent="MenuLayer/MainMenu/CenterContainer/Menu" instance=ExtResource( 4 )]
-margin_top = 84.0
+margin_top = 72.0
 margin_right = 142.0
-margin_bottom = 116.0
+margin_bottom = 104.0
 text = "Exit"
 
 [node name="SettingsMenu" parent="MenuLayer/MainMenu/CenterContainer" instance=ExtResource( 3 )]
@@ -99,7 +117,6 @@ margin_bottom = 32.0
 layer = -1
 
 [node name="GameUI" type="MarginContainer" parent="UILayer"]
-visible = false
 anchor_right = 1.0
 margin_bottom = 26.0
 custom_constants/margin_right = 10
@@ -131,6 +148,7 @@ anchor_bottom = 0.0
 margin_right = 1024.0
 margin_bottom = 600.0
 [connection signal="confirm" from="DialogLayer/DialogContainer/ExitConfirm" to="." method="exit_game"]
+[connection signal="back_to_menu" from="MenuLayer/GameOver" to="." method="_on_GameOver_back_to_menu"]
 [connection signal="pressed" from="MenuLayer/MainMenu/CenterContainer/Menu/Start" to="." method="start_game"]
 [connection signal="pressed" from="MenuLayer/MainMenu/CenterContainer/Menu/Settings" to="MenuLayer/MainMenu/CenterContainer/SettingsMenu" method="show"]
 [connection signal="pressed" from="MenuLayer/MainMenu/CenterContainer/Menu/Exit" to="DialogLayer/DialogContainer/ExitConfirm" method="open"]
@@ -138,3 +156,4 @@ margin_bottom = 600.0
 [connection signal="visibility_changed" from="MenuLayer/MainMenu/CenterContainer/SettingsMenu" to="." method="_on_SettingsMenu_visibility_changed"]
 [connection signal="item_selected" from="MenuLayer/MainMenu/CenterContainer/SettingsMenu/CardMatchSelect" to="." method="_on_CardMatchSelect_item_selected"]
 [connection signal="cards_matched" from="MarginContainer/MemoryCardGrid" to="." method="_on_MemoryCardGrid_cards_matched"]
+[connection signal="game_finished" from="MarginContainer/MemoryCardGrid" to="." method="_on_MemoryCardGrid_game_finished"]

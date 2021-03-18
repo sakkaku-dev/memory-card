@@ -7,13 +7,19 @@ onready var score_label = $UILayer/GameUI/Score
 onready var settings = $Settings
 onready var card_match_select = $MenuLayer/MainMenu/CenterContainer/SettingsMenu/CardMatchSelect
 onready var settings_menu = $MenuLayer/MainMenu/CenterContainer/SettingsMenu
+onready var game_over = $MenuLayer/GameOver
 
 var score = 0
 
 func _ready():
+	show_main_menu()
+
+func show_main_menu():
 	main_menu.show()
 	game.hide()
 	game_ui.hide()
+	game_over.hide()
+	score = 0
 	update_score()
 
 
@@ -69,3 +75,13 @@ func _on_SettingsMenu_visibility_changed():
 	else:
 		settings.settings["game"]["match_type"] = card_match_select.selected
 		settings.save_settings()
+
+
+func _on_MemoryCardGrid_game_finished():
+	game.hide()
+	game_over.show()
+	game_over.grab_focus()
+
+
+func _on_GameOver_back_to_menu():
+	show_main_menu()

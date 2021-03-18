@@ -1,6 +1,7 @@
 extends Control
 
 signal cards_matched
+signal game_finished
 
 const POKER_CARD_SCENE = preload("res://assets/poker-cards/PokerCard.tscn")
 
@@ -11,6 +12,10 @@ var revealed_cards = []
 var card_matcher: CardMatcher
 
 func start_game(matcher: CardMatcher):
+	for child in grid.get_children():
+		grid.remove_child(child)
+		
+
 	show()
 	card_matcher = matcher
 
@@ -52,7 +57,7 @@ func _create_card_scenes() -> Array:
 
 
 func _on_card_click(card: PokerCard):
-	if _max_revealed_cards() and not card.show_back:
+	if _max_revealed_cards() or not card.show_back:
 		return
 	
 	card.show_back = false
@@ -66,11 +71,20 @@ func _max_revealed_cards() -> bool:
 	return card_matcher.is_max_revealed_cards(revealed_cards)
 
 
+func _all_cards_revealed() -> bool:
+	for card in grid.get_children():
+		if card.show_back:
+			return false
+	return true
+
+
 func _on_RevealedTimer_timeout():
 	if card_matcher.match_cards(revealed_cards):
-		print("Match")
 		emit_signal("cards_matched")
 	else:
 		for c in revealed_cards:
 			c.show_back = true
 	revealed_cards = []
+	
+	if _all_cards_revealed():
+		emit_signal("game_finished")
