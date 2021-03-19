@@ -59,5 +59,6 @@ func set_from_file_name(file_name: String):
 		suit = values[1]
 		value = values[2]
 
+# When exporting only .import files will be kept
 static func valid_file(file_name: String):
-	return file_name.begins_with("card_") and file_name.ends_with(".png") and file_name.count("_") == 2
+	return file_name.begins_with("card_") and file_name.ends_with(".png.import") and file_name.count("_") == 2
