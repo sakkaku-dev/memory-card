@@ -12,6 +12,7 @@ onready var game_over = $MenuLayer/GameOver
 var score = 0
 
 func _ready():
+	randomize()
 	show_main_menu()
 
 func show_main_menu():
